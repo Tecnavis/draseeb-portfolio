@@ -1247,7 +1247,7 @@ $class-name: cards_wrap;
   background-image: url("../img/pexels-yusuf-p-11438391.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  /* background-size: cover; */
+  background-size: cover;
   background-position-y: 50% ;
 }
 .cards_wrap__card-stick.color3 {
@@ -1300,13 +1300,15 @@ $class-name: cards_wrap;
     justify-content: center;
     align-items: center;
     width: auto;
-    margin: 0 auto;
+    margin: 0px;
     background: rgba(  255, 255, 255, 0.2 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4.5px );
    -webkit-backdrop-filter: blur( 4.5px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    /* overflow: hidden; */
+    position: relative;
  
    
   
@@ -1318,9 +1320,9 @@ $class-name: cards_wrap;
     align-items: center;
     /* border-radius: 8px; */
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-    width: 47%;
-    min-height: 220px;
-    margin-left: 20px;
+    width: auto;
+    height: auto;
+    margin-top: 20px;
     /* background-color: #fff; */
     background: rgba(  255, 255, 255, 0.2 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -1346,37 +1348,6 @@ $class-name: cards_wrap;
   padding-right: 30px;
 }
 
-.card_4{
-
-    border: 1px solid #ccc;
-    display:block;
-    justify-content: center;
-    align-items: center;
-    width: 47%;
-    min-height: 220px;
-    margin-top: 20PX;
-    background: rgba(  255, 255, 255, 0.2 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4.5px );
-   -webkit-backdrop-filter: blur( 4.5px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
- 
-}
-.card_4 h4{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 25px;
-  padding-bottom: 30px;
-}
-.card_4 h6{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 30px;
-  padding-right: 30px;
-}
 .card_a {
   padding-left: 50px;
   padding-right: 50px;
