@@ -197,11 +197,11 @@ h6 {
   position: relative;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   #hero {
     padding-left: 160px;
   }
-}
+} */
 
 #hero:before {
   content: "";
@@ -1366,4 +1366,28 @@ $class-name: cards_wrap;
  -webkit-backdrop-filter: blur( 4.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+@media(max-width:768px){
+  #hero {
+    width: 100%;
+    height: 100vh;
+    background: url("../img/IMG_1828.JPG") top right no-repeat;
+    background-size: cover;
+    position: relative;
+    opacity: ;
+  }
+  #hero:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .face{
+    position: absolute;
+    top:70% ;
+  }
 }
