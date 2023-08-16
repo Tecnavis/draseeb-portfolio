@@ -17,6 +17,8 @@ class Example {
           smooth: true
         }
       });
+      console.log('Is mobile:', this.scroll.isMobile);
+
       this.images = this.root.querySelectorAll('.image');
       [].forEach.call(this.images, image => {
         image.addEventListener('click', () => {
