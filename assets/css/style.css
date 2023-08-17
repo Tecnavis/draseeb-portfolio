@@ -1391,3 +1391,7 @@ $class-name: cards_wrap;
     top:70% ;
   }
 }
+.gallery-intro{
+  width:100%;
+  height: 100%;
+}
