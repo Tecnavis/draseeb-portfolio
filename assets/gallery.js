@@ -1,54 +1,65 @@
-class Example {
-    constructor(options) {
-      this.root = options.root;
-      this.init();
-      setTimeout(this.showImages.bind(this), 1000);
-    }
-    init() {
-      this.scroll = new LocomotiveScroll({
-        el: this.root,
-        direction: 'horizontal',
-        smooth: true,
-        lerp: 0.05,
-        tablet: {
-          smooth: true
+console.clear();
+
+const app = document.querySelector("#app");
+
+const figures = Array.from(app.querySelectorAll(".gallery-item"));
+const elDetails = app.querySelector(".details");
+
+function flipImages(firstEl, lastEl, change) {
+  requestAnimationFrame(() => {
+    const firstRect = firstEl.getBoundingClientRect();
+    const lastRect = lastEl.getBoundingClientRect();
+
+    const deltaX = firstRect.left - lastRect.left;
+    const deltaY = firstRect.top - lastRect.top;
+    const deltaWidth = firstRect.width / lastRect.width;
+    const deltaHeight = firstRect.height / lastRect.height;
+
+    change();
+    lastEl.parentElement.dataset.flipping = true;
+
+    const animation = lastEl.animate(
+      [
+        {
+          transform: `translate(${deltaX}px, ${deltaY}px) scale(${deltaWidth}, ${deltaHeight})`
         },
-        smartphone: {
-          smooth: true
+        {
+          transform: "none"
         }
-      });
-      console.log('Is mobile:', this.scroll.isMobile);
+      ],
+      {
+        duration: 500,
+        easing: "cubic-bezier(.2, 0, .3, 1)"
+      }
+    );
 
-      this.images = this.root.querySelectorAll('.image');
-      [].forEach.call(this.images, image => {
-        image.addEventListener('click', () => {
-          image.classList.add('-clicked');
-          this.hideImages();
-        });
-      });
-    }
-
-    
-    
-    showImages() {
-      [].forEach.call(this.images, image => {
-        image.classList.remove('-clicked');
-        image.classList.add('-active');
-      });
-    }
-    hideImages() {
-      [].forEach.call(this.images, image => {
-        image.classList.remove('-active');
-      });
-      setTimeout(this.showImages.bind(this), 2000);
-    }
-  }
-  window.addEventListener('DOMContentLoaded', event => {
-    const example = new Example({
-      root: document.querySelector('.scroll-animations-example')
-    });
+    animation.onfinish = () => {
+      delete lastEl.parentElement.dataset.flipping;
+    };
   });
+}
 
+// Add event listeners to figures
+figures.forEach(figure =>
+  figure.addEventListener("click", () => {
+    elDetails.innerHTML = "";
+    const elImage = figure.querySelector("img");
 
+    const clonedFigure = figure.cloneNode(true);
+    const elClonedImg = clonedFigure.querySelector("img");
+    elDetails.appendChild(clonedFigure);
 
-  
+    flipImages(elImage, elClonedImg, () => {
+      app.dataset.state = "details";
+    });
+
+    function revert() {
+      flipImages(elClonedImg, elImage, () => {
+        app.dataset.state = "gallery";
+        elDetails.removeEventListener("click", revert);
+      });
+    }
+
+    elDetails.addEventListener("click", revert);
+  })
+);

@@ -1,107 +1,107 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
-  .scroll-animations-example > .scrollsection {
-    padding: 10vh 10vh 10vh 10vmax;
-    min-width: 550vh;
-  }
-  .scroll-animations-example > .scrollsection > .item {
-    display: inline-block;
-    position: relative;
-    margin: 0 -30vh 0 3vh;
-  }
-  .scroll-animations-example > .scrollsection > .item::before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-  }
-  .scroll-animations-example > .scrollsection > .item.-big {
-    height: 80vh;
-    width: 60vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-big.-horizontal {
-    /* height: 60vh; */
-    width: 80vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-normal {
-    /* height: 60vh; */
-    width: 45vh;
-    z-index: 1;
-  }
-  .scroll-animations-example > .scrollsection > .item.-normal.-horizontal {
-    /* height: 45vh; */
-    width: 60vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-normal:nth-of-type(3n) {
-    bottom: 5vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-normal:nth-of-type(4n) {
-    bottom: -5vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-small {
-    /* height: 40vh; */
-    width: 30vh;
-    z-index: 2;
-  }
-  .scroll-animations-example > .scrollsection > .item.-small.-horizontal {
-    /* height: 30vh; */
-    width: 40vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-small:nth-of-type(3n) {
-    bottom: 13vh;
-  }
-  .scroll-animations-example > .scrollsection > .item.-small:nth-of-type(4n) {
-    bottom: -13vh;
-  }
-  .scroll-animations-example > .scrollsection > .item > .image {
-    /* height: 100%; */
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    filter: grayscale(1);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(0) translateY(0) scale(1);
-    transition: filter .3s ease, opacity 1s ease, transform 1s ease;
-  }
-  .scroll-animations-example > .scrollsection > .item:nth-of-type(4n) > .image {
-    transform: translateX(-30vh) translateY(-30vh) scale(.8);
-    transition-delay: 0;
-  }
-  .scroll-animations-example > .scrollsection > .item:nth-of-type(4n - 1) > .image {
-    transform: translateX(30vh) translateY(30vh) scale(.8);
-    transition-delay: .05s;
-  }
-  .scroll-animations-example > .scrollsection > .item:nth-of-type(4n - 2) > .image {
-    transform: translateX(-30vh) translateY(30vh) scale(.8);
-    transition-delay: .1s;
-  }
-  .scroll-animations-example > .scrollsection > .item:nth-of-type(4n - 3) > .image {
-    transform: translateX(-30vh) translateY(-30vh) scale(.8);
-    transition-delay: .15s;
-  }
-  .scroll-animations-example > .scrollsection > .item > .image.-active {
-    transform: translateX(0) translateY(0) scale(1);
-    opacity: .8;
-    pointer-events: auto;
-    transition: filter .3s ease, opacity 1s ease, transform 1s ease;
-  }
-  .scroll-animations-example > .scrollsection > .item > .image.-clicked {
-    transform: translateX(0) translateY(0) scale(5);
-    opacity: 0;
-    pointer-events: auto;
-    transition: filter .3s ease, opacity 1s ease, transform 1s ease;
-  }
-  .scroll-animations-example > .scrollsection > .item > .image.-active:hover {
-    /* height: 100%; */
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    filter: grayscale(0);
-    opacity: 1;
-    cursor: pointer;
-  }
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 
-  
-  
+img {
+  max-width: 100%;
+  transform-origin: top left;
+}
+
+#app {
+  background: hsl(0, 5%, 6%);
+  min-height: 100%;
+}
+
+.gallery {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+  height: var(--gallery-height, 310vw);
+}
+
+.gallery::before,
+.gallery::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+
+.gallery-item {
+  width: 33.3%;
+  margin: 0;
+  position: relative;
+}
+
+.gallery-item[data-flipping] {
+  z-index: 3;
+}
+
+.gallery-item:nth-child(3n+1) {
+  order: 1;
+}
+
+.gallery-item:nth-child(3n+2) {
+  order: 2;
+}
+
+.gallery-item:nth-child(3n) {
+  order: 3;
+}
+
+.gallery-item img {
+  display: block;
+}
+
+.gallery-item figcaption {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: #fff;
+  text-shadow: 0px 0px 3px #333;
+  font-family: monospace;
+}
+
+.details {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-state="details"] .details {
+  background: hsla(0, 3%, 5%, 0.8);
+  transition: background 0.5s;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.details figure {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vmin;
+}
+
+.details figure img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.details figure figcaption {
+  display: none;
+}
