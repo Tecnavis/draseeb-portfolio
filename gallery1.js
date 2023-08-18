@@ -1,12 +1,4 @@
-const swiper = new Swiper('.swiper-container', {
-    direction: 'vertical',
-    mousewheel: {},
-    effect: 'cube',
-    keyboard: {
-      enabled: true,
-      onlyInViewport: false
-    }
-  });
+
   // Add these modifications to your existing JavaScript code
 const swiper = new Swiper('.swiper-container', {
   direction: 'vertical',
