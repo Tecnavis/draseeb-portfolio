@@ -1,4 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+/* Add this at the beginning of your CSS to include mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Adjust the font size for better readability */
+  }
+
+  .swiper-container {
+    height: 100%; /* Make the swiper container take full height on mobile */
+  }
+
+  .container-general {
+    padding: 50px 0; /* Reduce padding for smaller screens */
+    width: 100%;
+  }
+
+  .container-general .gallery-wrap {
+    flex-direction: column; /* Stack gallery items vertically on mobile */
+    height: auto; /* Adjust height as needed */
+  }
+
+  .container-general .gallery-wrap .item {
+    flex: none; /* Reset flex for individual gallery items */
+    width: 100%; /* Make each item take full width on mobile */
+    height: auto; /* Adjust height as needed */
+    margin-bottom: 10px; /* Add spacing between gallery items */
+  }
+
+  .swiper-slide {
+    display: block; /* Display slides as blocks on mobile */
+    background: none; /* Remove background color/image for slides */
+    padding: 20px 0; /* Adjust padding for individual slides */
+  }
+
+  /* Adjust other styles as needed for better mobile display */
+}
+
 html, body {
   position: relative;
   width: 100%;
